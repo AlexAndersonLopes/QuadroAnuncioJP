@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Alterar Semana</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="imagens/faviconJP.png">
+        <link rel="stylesheet" href="css/index.css" />   
+        <link rel="stylesheet" href="css/restrito.css" />   
+    </head>
+
+    <body style="margin-bottom: 15%; background-color: whitesmoke;">
+        <header>
+
+            <div class="cabecalho">
+                <a th:href="@{/inicio}">
+                    <img th:src="@{imagens/JP0.png}" alt="alt"/>
+                </a>
+                <div id="cabecalhoCongregacao">
+                    <h1>Congregação: <br>"Jardim Peruíbe"</h1>
+                </div>
+            </div>
+
+            <button id="botaoVoltar">
+                <a th:href="@{/restrito}">
+                    Voltar
+                </a>
+            </button>
+
+        </header>
+
+        <main>
+
+            <form class="cadastrarCategoriaForm" method="POST" th:action="@{/alterarSemanaId}" th:object="${semana}" enctype="multipart/form-data">
+
+                <h1 class="categoria2">Alterar designados para Reunião</h1>
+                
+                <input type="hidden" id="semanaId" th:field="${semana.id}" />
+
+                <label>semana: </label> 
+                <input id="dia" th:field="${semana.dia}" type="text" name="dia"><br><br>
+
+                <label>Foto:</label> <input id="fotoInput" type="file" onclick="clearFileName()" name="imagem">
+                <span id="fotoInput0" th:text="${semana.foto}"></span>
+
+
+                <label>Foto Meio de Semana:</label> <input id="fotoInput1" type="file" onclick="clearFileName1()" name="imagem1">
+                <span id="fotoInput01" th:text="${semana.fotomeiosemana}"></span><br><br>
+
+                <label>Foto Fim de Semana:</label> <input id="fotoInput2" type="file" onclick="clearFileName2()" name="imagem2">
+                <span id="fotoInput02" th:text="${semana.fotofimsemana}"></span><br><br>
+
+
+                <label>Indicador Responsavel: </label> 
+                <input id="palco" th:field="${semana.palco}" type="text" name="palco"><br><br>
+
+                <label>Portão: </label> 
+                <input id="portao" th:field="${semana.portao}" type="text" name="portao"><br><br>
+
+                <label>Indicador: </label> 
+                <input id="indicador" th:field="${semana.indicador}" type="text" name="indicador"><br><br>
+
+                <label>Microfone Volante 1: </label> 
+                <input id="volante1" th:field="${semana.volante1}" type="text" name="volante1"><br><br>
+
+                <label>Microfone Volante 2: </label> 
+                <input id="volante2" th:field="${semana.volante2}" type="text" name="volante2"><br><br>
+
+                <label>Mídias: </label> 
+                <input id="midias" th:field="${semana.midias}" type="text" name="midias"><br><br>
+
+                <label>Audio: </label> 
+                <input id="audio" th:field="${semana.audio}" type="text" name="audio"><br><br>
+
+                <label>Limpeza do Grupo: </label> 
+                <input id="limpeza" th:field="${semana.limpeza}" type="text" name="limpeza"><br><br>
+
+                <label>Link meio de semana: </label> 
+                <input id="link1" th:field="${semana.link1}" type="text" name="link1"><br><br>
+
+                <label>Link fim de semana: </label> 
+                <input id="link2" th:field="${semana.link2}" type="text" name="link2"><br><br>
+
+                <button id="botaoCategoria" class="botaoCadastrar" type="button" onclick="enviarFormulario()">Alterar</button>
+
+            </form>
+
+
+        </main>
+
+        <footer>
+
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+        <script>
+                    function clearFileName() {
+                        var fileNameDisplay = document.getElementById('fotoInput0');
+                        fileNameDisplay.innerText = '';
+                        var inputF = document.getElementById('fotoInput');
+                        inputF.style.color = 'initial';
+                    }
+
+                    function clearFileName1() {
+                        var fileNameDisplay = document.getElementById('fotoInput01');
+                        fileNameDisplay.innerText = '';
+                        var inputF = document.getElementById('fotoInput1');
+                        inputF.style.color = 'initial';
+                    }
+
+                    function clearFileName2() {
+                        var fileNameDisplay = document.getElementById('fotoInput02');
+                        fileNameDisplay.innerText = '';
+                        var inputF = document.getElementById('fotoInput2');
+                        inputF.style.color = 'initial';
+                    }
+
+
+                    function enviarFormulario() {
+                        const semanaId = document.getElementById("semanaId").value.trim();
+                        const dia = document.getElementById("dia").value.trim();
+                        const fotoInput = document.getElementById("fotoInput").files[0];
+                        const fotoInput1 = document.getElementById("fotoInput1").files[0];
+                        const fotoInput2 = document.getElementById("fotoInput2").files[0];
+                        const palco = document.getElementById("palco").value.trim();
+                        const portao = document.getElementById("portao").value.trim();
+                        const indicador = document.getElementById("indicador").value.trim();
+                        const volante1 = document.getElementById("volante1").value.trim();
+                        const volante2 = document.getElementById("volante2").value.trim();
+                        const midias = document.getElementById("midias").value.trim();
+                        const audio = document.getElementById("audio").value.trim();
+                        const limpeza = document.getElementById("limpeza").value.trim();
+                        const link1 = document.getElementById("link1").value.trim();
+                        const link2 = document.getElementById("link2").value.trim();
+
+                        // Montar os dados do formulário em um objeto FormData
+                        const formData = new FormData();
+                        formData.append("id", semanaId);
+                        formData.append("dia", dia);
+                        formData.append("imagem", fotoInput);
+                        formData.append("imagem1", fotoInput1);
+                        formData.append("imagem2", fotoInput2);
+                        formData.append("palco", palco);
+                        formData.append("portao", portao);
+                        formData.append("indicador", indicador);
+                        formData.append("volante1", volante1);
+                        formData.append("volante2", volante2);
+                        formData.append("midias", midias);
+                        formData.append("audio", audio);
+                        formData.append("limpeza", limpeza);
+                        formData.append("link1", link1);
+                        formData.append("link2", link2);
+
+                        // Enviar a solicitação AJAX
+                        const xhr = new XMLHttpRequest();
+                        xhr.open("PUT", 'alterarSemanaId/' + semanaId);
+                        xhr.onload = function () {
+                            if (xhr.status === 200) {
+                                // A solicitação foi bem-sucedida
+                                var permissao = localStorage.getItem("permissao");
+                                var form = document.createElement("form");
+                                form.setAttribute("method", "POST");
+                                form.setAttribute("action", "irMostrarSemana");
+                                var inputPermissao = document.createElement("input");
+                                inputPermissao.setAttribute("type", "hidden");
+                                inputPermissao.setAttribute("name", "permissao");
+                                inputPermissao.setAttribute("value", permissao);
+                                form.appendChild(inputPermissao);
+                                document.body.appendChild(form);
+                                form.submit();
+                            } else {
+                                // A solicitação falhou
+                                console.error("Falha ao atualizar a semana");
+                            }
+                        };
+                        xhr.send(formData);
+                    }
+        </script>
+
+    </body>
+
+</html>

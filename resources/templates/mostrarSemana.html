@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Mostrar Semanas</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="imagens/faviconJP.png">
+        <link rel="stylesheet" href="css/index.css" />   
+        <link rel="stylesheet" href="css/restrito.css" />   
+    </head>
+
+    <body style="margin-bottom: 15%; background-color: whitesmoke;">
+        <header>
+
+            <div class="cabecalho">
+                <a th:href="@{/inicio}">
+                <img th:src="@{imagens/JP0.png}" alt="alt"/>
+                </a>
+                <div id="cabecalhoCongregacao">
+                    <h1>Congregação: <br>"Jardim Peruíbe"</h1>
+                </div>
+            </div>
+
+            <button style="margin-bottom: 2%;" id="botaoVoltar">
+                <a th:href="@{/restrito}">
+                    Voltar
+                </a>
+            </button>
+
+        </header>
+
+        <main>
+  
+             <div class="cartazTodo" >
+
+                <div th:each="sem : ${listaSemanas}" class="cartazTemaSemana">
+
+                    <img class="cartaz1" th:src="@{'imagens/' + ${sem.foto}}" th:alt="${sem.dia}">
+
+                    <div class="cartazNome2">
+
+                        <span th:text="${sem.dia}"></span><br><br>
+
+                        <a th:href="@{'alterarSemana?id=' + ${sem.id}}">
+                            <p class="botaoAlterar" >Alterar</p>
+                        </a>
+
+                        <a th:href="@{'excluirSemana?id=' + ${sem.id}}">
+                            <p class="botaoExcluir">Excluír</p>
+                        </a>
+                    </div>
+                </div>
+
+             </div>
+            
+        </main>
+
+        <footer>
+
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    </body>
+
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Cadastrar Dirigentes</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="imagens/faviconJP.png">
+        <link rel="stylesheet" href="css/index.css" />   
+        <link rel="stylesheet" href="css/restrito.css" />    
+    </head>
+
+    <body style="margin-bottom: 15%; background-color: whitesmoke;">
+        <header>
+
+            <div class="cabecalho">
+                <a th:href="@{/inicio}">
+                <img th:src="@{imagens/JP0.png}" alt="alt"/>
+                </a>
+                <div id="cabecalhoCongregacao">
+                    <h1>Congregação: <br>"Jardim Peruíbe"</h1>
+                </div>
+            </div>
+
+            <button id="botaoVoltar">
+                <a th:href="@{/restrito}">
+                    Voltar
+                </a>
+            </button>
+
+        </header>
+
+        <main>
+
+            <form class="cadastrarCategoriaForm" method="POST" th:action="@{/cadastrarDirigentes}" enctype="multipart/form-data">
+
+                <h1 class="categoria2">Cadastrar Lista de Dirigentes</h1>
+                
+                <label>Foto 1: </label> 
+                <input id="fotoInput0" type="file" name="image1"><br><br>
+                
+                <label>Foto 2: </label> 
+                <input id="fotoInput01" type="file" name="image2"><br><br>
+                
+                <label>Foto 3: </label> 
+                <input id="fotoInput02" type="file" name="image3"><br><br>
+                
+                <label>Foto 4: </label> 
+                <input id="fotoInput03" type="file" name="image4"><br><br>
+                
+                <label>Texto: </label>                 
+                <textarea id="descProduto" th:field="${dirigentes.descricao}" rows="4" name="descricao"></textarea><br><br>
+                
+                 <button id="botaoCategoria" class="botaoCadastrar" type="submit">Cadastrar</button>
+                 
+            </form>
+
+        </main>
+
+        <footer>
+
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    </body>
+
+</html>

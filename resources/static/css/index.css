@@ -1,0 +1,343 @@
+
+
+/*CSS PARA CELULAR*/
+@media only screen and (max-width: 750px) {
+
+    .opcoes {
+        display: flex;
+        height: 45px;
+    }
+
+    #botaoVoltar a{       
+        text-decoration: none;
+        color: red;
+        font-size: 110%;
+        font-weight: 700;
+        font-family: Arial;
+    }
+    
+    .relat a{
+        text-decoration: none;
+        width: 95%;
+        margin-left: 2.5%;
+        justify-content: space-around;
+    }
+
+    .relat{
+        margin-left: 10%;
+        margin-top: 5%;
+        width: 45%;
+        padding: 0.5% 0;
+        display: flex;
+        border: 2px solid #333;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #FFFFB0;
+        border-radius: 20px;
+        box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.7);
+            }
+
+    .relat span{
+        font-size: 70%;
+        font-weight: 700;
+        font-family: Arial;
+        align-items: center;
+        margin-left: 4%;
+        color: black;
+    }
+
+    .relat img{
+        margin-left: 2%;
+        width: 35%;
+        border: 1px solid #333;
+        align-items: center;
+    }
+
+    #botaoVoltar{
+        padding: 1% 7%;
+        border: 1px solid black;
+        color: red;
+        border-radius: 25px;
+        margin-left: 5%;
+        box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.7);
+        background-color: wheat;
+    }
+    
+    #botaoSair{
+        cursor: pointer;
+        float: right;
+        margin-right: 5%;
+        height: 50px;
+    }
+    
+    .opcao-link {
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1; /* Para ocupar toda a largura disponível */
+        background-color: dimgray;
+        border: 2px solid darkgrey;
+        color: #333;
+    }
+
+    .opcoesP{
+        color: white;
+        margin: auto;
+        font-weight: 500;
+        font-size: 100%;
+        letter-spacing: 1px;
+    }
+
+
+
+    .cabecalho{
+        display: flex;
+        width: 100%;
+        max-height: 150px;
+        align-items: center;
+        text-align: center;
+        border: 4px solid black;
+        box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.8);
+        margin-bottom: 5%;
+        background-color: white;
+    }
+
+    .cabecalho img{
+        width: 150px;
+        box-shadow: 12px 5px 20px rgba(0, 0, 0, 0.8);
+    }
+
+    #cabecalhoCongregacao {
+        justify-content: center;
+        width: 100%;
+    }
+
+    #cabecalhoCongregacao h1 {
+        text-align: center;
+        font-size: 125%;
+        font-weight: 700;
+        text-shadow: 6px 6px 10px rgba(0, 0, 0, 0.6);
+        flex-wrap: wrap;
+    }
+    
+    #cabecalhoCongregacao h1 br{
+    display: block; 
+    content: "\A";
+    }
+
+
+    .meses{
+        margin-top: 5%;
+        width: 100%;
+        margin-left: 10%;
+        position: relative;
+    }
+
+    .meses img{
+        width: 80%;
+        border-radius: 15px;
+    }
+
+    .meses p{
+        font-size: 125%;
+        font-weight: 600;
+        color: black;
+        position: absolute; /* Posiciona o elemento p absolutamente em relação ao elemento pai */
+        bottom: 0; /* Coloca o elemento p no fundo do elemento pai */
+        left: 0; /* Ajusta a posição horizontalmente para o canto esquerdo do elemento pai */
+        margin-bottom: 0;
+        padding: 0.5% 10%;
+        background-color: aliceblue;
+        border-bottom-left-radius: 15px;
+        border: 1px solid black;
+    }
+
+
+
+}
+
+
+@media only screen and (min-width: 751px) {
+
+    @media only screen and (max-width: 1350px) {
+        .opcoes {
+            padding: 0% 2%;
+            display: flex;
+            height: 50px;
+            width: 60%;
+            margin-left: 20%;
+        }
+    }
+
+    @media only screen and (min-width: 1351px) {
+        .opcoes {
+            padding: 0% 2%;
+            display: flex;
+            height: 50px;
+            width: 40%;
+            margin-left: 30%;
+        }
+    }
+
+    #botaoVoltar a{  
+        display: flex;
+        text-decoration: none;
+        color: red;
+        font-size: 120%;
+        font-weight: 700;
+        font-family: Arial;
+        padding: 0.5% 4%;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #botaoSair{
+        cursor: pointer;
+        float: right;
+        margin-right: 10%;
+        margin-top: 5%;
+    }
+
+    #botaoVoltar{
+        border: 1px solid black;
+        border-radius: 25px;
+        margin-left: 10%;
+        margin-top: 5%;
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.8);
+        cursor: pointer;
+        background-color: wheat;
+        width: 160px;
+        height: 40px;
+    }
+
+    .opcoes0{
+        background-color: dimgray;
+    }
+
+    .opcao-link {
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25%;
+        background-color: dimgray;
+        border: 2px solid darkgrey;
+        color: #333;
+    }
+
+    .opcoesP{
+        color: white;
+        margin: auto;
+        font-weight: 500;
+        font-size: 130%;
+        letter-spacing: 2px;
+    }
+
+
+
+    .cabecalho{
+        display: flex;
+        width: 100%;
+        max-height: 200px;
+        align-items: center;
+        text-align: center;
+        border: 4px solid black;
+        box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.8);
+        background-color: white;
+        margin-bottom: 2%;
+    }
+
+    .cabecalho img{
+        width: 200px;
+        box-shadow: 12px 8px 20px rgba(0, 0, 0, 0.8);
+        cursor: pointer;
+    }
+
+    #cabecalhoCongregacao {
+        justify-content: center;
+        width: 100%;
+    }
+
+    #cabecalhoCongregacao h1 {
+        text-align: center;
+        font-size: 300%;
+        font-weight: 800;
+        text-shadow: 6px 6px 10px rgba(0, 0, 0, 0.6);
+    }
+    
+    #cabecalhoCongregacao h1 br{
+    display: none;
+    }
+
+    .meses-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .meses{
+        margin-top: 5%;
+        width: 40%;
+        margin-left: 7%;
+        position: relative;
+    }
+
+    .meses img{
+        width: 100%;
+        border-radius: 15px;
+    }
+
+    .meses p{
+        font-size: 150%;
+        font-weight: 600;
+        color: black;
+
+        position: absolute; /* Posiciona o elemento p absolutamente em relação ao elemento pai */
+        bottom: 0; /* Coloca o elemento p no fundo do elemento pai */
+        left: 0; /* Ajusta a posição horizontalmente para o canto esquerdo do elemento pai */
+        margin-bottom: 0;
+        padding: 0.5% 5%;
+        background-color: aliceblue;
+        border-bottom-left-radius: 15px;
+        border: 1px solid black;
+    }
+    
+    .relat a{
+        text-decoration: none;
+    }
+       
+    .relat{ 
+        margin-top: 3%;
+        margin-left: 7%;
+        width: 270px;
+        padding: 0.5% 0;
+        display: flex;
+        border: 2px solid #333;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #FFFFB0;
+        border-radius: 20px;
+        box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.7);
+        cursor: pointer;
+    }
+
+    .relat span{
+        font-size: 110%;
+        font-weight: 700;
+        font-family: Arial;
+        align-items: center;
+        color: black;
+        margin-left: 10px;
+    }
+
+    .relat img{
+        margin-left: 10px;
+        width: 35%;
+        border: 1px solid #333;
+        align-items: center;
+    }
+
+}
+

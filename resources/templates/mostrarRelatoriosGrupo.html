@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Mostrar Relatórios</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="imagens/faviconJP.png">
+        <link rel="stylesheet" href="css/index.css" />   
+        <link rel="stylesheet" href="css/mostrarRelatorio.css" />   
+    </head>
+
+    <body style="margin-bottom: 15%; background-color: whitesmoke;">
+        <header>
+
+            <div class="cabecalho">
+                <a th:href="@{/inicio}">
+                    <img th:src="@{imagens/JP0.png}" alt="alt"/>
+                </a>
+                <div id="cabecalhoCongregacao">
+                    <h1>Congregação: <br>"Jardim Peruíbe"</h1>
+                </div>
+            </div>
+
+            <button id="botaoVoltar">
+                <a th:href="@{/restrito}">
+                    Voltar
+                </a>
+            </button>
+
+        </header>
+
+        <main>
+
+            <form th:action="@{/mostrarRelatoriosGrupo}" method="POST">
+                <input type="hidden" name="permissao" th:value="${permissao}">
+                <input type="hidden" name="grupo" th:value="${grupo}">
+                <div class="linhaMes">
+                     <select name="mes">
+                        <option value="" th:selected="${mes == ''}">Todos meses</option>
+                        <option th:each="mesa : ${datas}" th:value="${mesa}" th:text="${mesa}" th:selected="${mesa == mes}"></option>         
+                    </select>
+                    <button type="submit">Procurar</button>
+                </div>
+            </form>
+
+            <div class="containers">
+                <h2>Relatórios - Grupo: <span th:text="${grupo}"></span></h2>
+                <div style="background-color: white;" class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Mês</th>
+                                <th>Pregou?</th>
+                                <th>Modalidade</th>
+                                <th>Horas</th>
+                                <th>Estudos</th>
+                                <th>Observações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="relatorio : ${ListaRelatorio}" th:data-id="${relatorio.id}">
+                                <td th:text="${relatorio.nome}"></td>
+                                <td th:text="${relatorio.mes}"></td>
+                                <td th:text="${relatorio.participou}"></td>
+                                <td th:text="${relatorio.pioneiro}"></td>
+                                <td th:text="${relatorio.horas}"></td>
+                                <td th:text="${relatorio.estudo}"></td>
+                                <td th:text="${relatorio.obs}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+
+        <footer>
+           
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+
+    </body>
+
+</html>

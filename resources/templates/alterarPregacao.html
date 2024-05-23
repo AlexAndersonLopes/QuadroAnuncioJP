@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Alterar Pregação</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="imagens/faviconJP.png">
+        <link rel="stylesheet" href="css/index.css" />   
+        <link rel="stylesheet" href="css/restrito.css" />   
+        <link rel="stylesheet" href="css/carrinho.css" />     
+    </head>
+
+    <body style="margin-bottom: 15%; background-color: whitesmoke;">
+        <header>
+
+            <div class="cabecalho">
+                <a th:href="@{/inicio}">
+                <img th:src="@{imagens/JP0.png}" alt="alt"/>
+                </a>
+                <div id="cabecalhoCongregacao">
+                    <h1>Congregação: <br>"Jardim Peruíbe"</h1>
+                </div>
+            </div>
+
+            <button id="botaoVoltar">
+                <a th:href="@{/restrito}">
+                    Voltar
+                </a>
+            </button>
+
+        </header>
+
+        <main>
+
+            <form class="cadastrarCategoriaForm" method="POST" th:action="@{/alterarPregacaoId}" th:object="${pregacao}" enctype="multipart/form-data">
+
+                <h1 class="categoria2">Alterar Lista de Serviço de Campo</h1>
+                
+                <div class="caixaCarrinho">
+                    <label>Foto 1:</label> <input id="fotoInput1" type="file" onclick="clearFileName()" name="imagem">
+                    <span style="margin-left: 5%;" id="mostrarNomeFoto" th:text="${pregacao?.foto1}"></span><br><br>
+                    <p onclick="excluirFoto1()" class="botaoExcluirCar">Excluír</p>
+                </div>
+
+                <div class="caixaCarrinho">
+                    <label>Foto 2:</label> <input id="fotoInput2" type="file" onclick="clearFileName2()" name="imagem1">
+                    <span style="margin-left: 5%;" id="mostrarNomeFoto2" th:text="${pregacao?.foto2}"></span><br><br>
+                    <p onclick="excluirFoto2()" class="botaoExcluirCar">Excluír</p>
+                </div>
+
+                <div class="caixaCarrinho">
+                    <label>Foto 3:</label> <input id="fotoInput3" type="file" onclick="clearFileName3()" name="imagem2">
+                    <span style="margin-left: 5%;" id="mostrarNomeFoto3" th:text="${pregacao?.foto3}"></span><br><br>
+                    <p onclick="excluirFoto3()" class="botaoExcluirCar">Excluír</p>
+                </div>
+
+                <div class="caixaCarrinho">
+                    <label>Foto 4:</label> <input id="fotoInput4" type="file" onclick="clearFileName4()" name="imagem3">
+                    <span style="margin-left: 5%;" id="mostrarNomeFoto4" th:text="${pregacao?.foto4}"></span><br><br>
+                    <p onclick="excluirFoto4()" class="botaoExcluirCar">Excluír</p>
+                </div>
+
+                <div class="caixaCarrinho">
+                    <label>Texto: </label>                 
+                    <textarea id="descProduto" th:text="${pregacao?.descricao}" rows="4" name="descricao"></textarea><br><br>
+                    <p onclick="excluirFotoDescricao()" class="botaoExcluirCar">Excluír</p>
+                </div>
+                
+                <button id="botaoCategoria" class="botaoCadastrar" type="button" onclick="enviarFormulario()">Alterar</button>
+
+            </form>
+
+
+        </main>
+
+        <footer>
+
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+        <script>
+                        function excluirFoto1() {
+                            var campo = "foto1";
+                            $.ajax({
+                                type: 'delete',
+                                url: 'excluirPregacao',
+                                data: {campo: campo},
+                                success: function (response) {
+                                    console.log(campo + " Excluído com sucesso!");
+                                    window.location.reload();
+                                },
+                                error: function (xhr, status, error) {
+                                    console.log("Não foi possivel excluír " + campo);
+                                }
+
+                            });
+                        }
+
+                        function excluirFoto2() {
+                            var campo = "foto2";
+                            $.ajax({
+                                type: 'delete',
+                                url: 'excluirPregacao',
+                                data: {campo: campo},
+                                success: function (response) {
+                                    console.log(campo + " Excluído com sucesso!");
+                                    window.location.reload();
+                                },
+                                error: function (xhr, status, error) {
+                                    console.log("Não foi possivel excluír " + campo);
+                                }
+
+                            });
+                        }
+
+                        function excluirFoto3() {
+                            var campo = "foto3";
+                            $.ajax({
+                                type: 'delete',
+                                url: 'excluirPregacao',
+                                data: {campo: campo},
+                                success: function (response) {
+                                    console.log(campo + " Excluído com sucesso!");
+                                    window.location.reload();
+                                },
+                                error: function (xhr, status, error) {
+                                    console.log("Não foi possivel excluír " + campo);
+                                }
+
+                            });
+                        }
+
+                        function excluirFoto4() {
+                            var campo = "foto4";
+                            $.ajax({
+                                type: 'delete',
+                                url: 'excluirPregacao',
+                                data: {campo: campo},
+                                success: function (response) {
+                                    console.log(campo + " Excluído com sucesso!");
+                                    window.location.reload();
+                                },
+                                error: function (xhr, status, error) {
+                                    console.log("Não foi possivel excluír " + campo);
+                                }
+
+                            });
+                        }
+
+                        function excluirFotoDescricao() {
+                            var campo = "descricao";
+                            $.ajax({
+                                type: 'delete',
+                                url: 'excluirPregacao',
+                                data: {campo: campo},
+                                success: function (response) {
+                                    console.log(campo + " Excluído com sucesso!");
+                                    window.location.reload();
+                                },
+                                error: function (xhr, status, error) {
+                                    console.log("Não foi possivel excluír " + campo);
+                                }
+
+                            });
+                        }
+
+
+
+                        function clearFileName() {
+                            var fileNameDisplay = document.getElementById('mostrarNomeFoto');
+                            fileNameDisplay.innerText = '';
+                            var inputF = document.getElementById('fotoInput1');
+                            inputF.style.color = 'initial';
+                        }
+
+                        function clearFileName2() {
+                            var fileNameDisplay = document.getElementById('mostrarNomeFoto2');
+                            fileNameDisplay.innerText = '';
+                            var inputF = document.getElementById('fotoInput2');
+                            inputF.style.color = 'initial';
+                        }
+
+                        function clearFileName3() {
+                            var fileNameDisplay = document.getElementById('mostrarNomeFoto3');
+                            fileNameDisplay.innerText = '';
+                            var inputF = document.getElementById('fotoInput3');
+                            inputF.style.color = 'initial';
+                        }
+
+                        function clearFileName4() {
+                            var fileNameDisplay = document.getElementById('mostrarNomeFoto4');
+                            fileNameDisplay.innerText = '';
+                            var inputF = document.getElementById('fotoInput4');
+                            inputF.style.color = 'initial';
+                        }
+
+                      
+                      
+                      
+                      
+                      
+                      function enviarFormulario() {
+                        const imagem = document.getElementById("fotoInput1").files[0];
+                        const imagem1 = document.getElementById("fotoInput2").files[0];
+                        const imagem2 = document.getElementById("fotoInput3").files[0];
+                        const imagem3 = document.getElementById("fotoInput4").files[0];
+                        const desc = document.getElementById("descProduto").value;
+
+                        // Montar os dados do formulário em um objeto FormData
+                        const formData = new FormData();
+                        formData.append("imagem", imagem);
+                        formData.append("imagem1", imagem1);
+                        formData.append("imagem2", imagem2);                        
+                        formData.append("imagem3", imagem3);
+                        formData.append("desc", desc);                                                                
+                        
+                        // Enviar a solicitação AJAX
+                        const xhr = new XMLHttpRequest();
+                        xhr.open("PUT", '/alterarPregacaoId');
+                        xhr.onload = function () {
+                            if (xhr.status === 200) {
+                                // A solicitação foi bem-sucedida
+                                console.log("Pregação atualizada com sucesso!");
+                                window.location.href = "restrito";
+                            } else {
+                                // A solicitação falhou
+                                console.error("Falha ao atualizar a Pregação");
+                            }
+                        };
+                        xhr.send(formData);
+                    }
+        </script>
+
+
+    </body>
+
+</html>

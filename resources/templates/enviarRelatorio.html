@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Enviar o Relatório</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="imagens/faviconJP.png">
+        <link rel="stylesheet" href="css/index.css" /> 
+        <link rel="stylesheet" href="css/relatorio.css" /> 
+    </head>
+
+    <body style="margin-bottom: 15%; background-color: whitesmoke;">
+        <header>
+
+            <div class="cabecalho">
+                <a th:href="@{/inicio}">
+                    <img th:src="@{imagens/JP0.png}" alt="alt"/>
+                </a>
+                <div id="cabecalhoCongregacao">
+                    <h1>Congregação: <br>"Jardim Peruíbe"</h1>
+                </div>
+            </div>
+
+            <button id="botaoVoltar">
+                <a th:href="@{/inicio}">
+                    Voltar
+                </a>
+            </button>
+
+        </header>
+
+        <main>
+
+            <div id="mensagemErro2" style="margin-top: 5%; color: red; font-size: 150%; font-weight: 800; text-align: center;" th:if="${erro}" class="erro">Por favor preencha o relatório corretamente.</div>
+
+
+            <form method="POST" th:action="@{/cadastrarRelatorio}" th:object="${relatorio}">
+                <div class="relatorioTodo">
+
+                    <h1 class="relatorioH1">RELATÓRIO DE SERVIÇO DE CAMPO</h1>
+
+                    <div class="nomeMes">
+                        <label>Nome: </label><input onclick="Validar()" th:field="${relatorio.nome}" type="text" name="nome"><br>
+                    </div>
+                 <!--   <div class="nomeMes">
+                        <label>Mês: </label><select onclick="Validar()" th:field="${relatorio.mes}" name="selecionarMes">
+                            <option value=""></option>
+                            <option value="Janeiro">Janeiro</option>
+                            <option value="Fevereiro">Fevereiro</option>
+                            <option value="Março">Março</option>
+                            <option value="Abril">Abril</option>
+                            <option value="Maio">Maio</option>
+                            <option value="Junho">Junho</option>
+                            <option value="Julho">Julho</option>
+                            <option value="Agosto">Agosto</option>
+                            <option value="Setembro">Setembro</option>
+                            <option value="Outubro">Outubro</option>
+                            <option value="Novembro">Novembro</option>
+                            <option value="Dezembro">Dezembro</option>           
+                        </select>
+                        <br><br>
+                    </div>
+-->
+                    <div class="nomeMes">
+                        <label>Mês: </label>
+                        <select onclick="Validar()" th:field="${relatorio.mes}" name="selecionarMes">
+                            <option value=""></option>
+                            <!-- Gerar opções de meses -->
+                            <th:block th:each="mes : ${mesano}">
+                                <option th:value="${mes}" th:text="${mes}"></option>
+                            </th:block>
+                        </select>
+                        <br><br>
+                    </div>
+
+
+                    <div class="nomeMes">
+                        <label>Gupo: </label><select onclick="Validar()" th:field="${relatorio.grupo}" name="selecionarGrupo">
+                            <option value=""></option>
+                            <option th:each="user : ${usuario}" th:value="${user.grupo}" th:text="${user.grupo}"></option>     
+                        </select>
+                        <br><br>
+                    </div>
+
+                    <div class="nomeMes">
+                        <label>Modalidade: </label><select onclick="Validar()" th:field="${relatorio.pioneiro}" name="selecionarPioneiro">
+                            <option value="Publicador">Publicador(a)</option>
+                            <option value="Auxiliar">Pioneiro(a) Auxiliar</option>
+                            <option value="Regular">Pioneiro(a) Regular</option>        
+                        </select>
+                        <br><br>
+                    </div>
+
+                    <div class="linhaBorda"></div>
+
+                    <div class="relatorioMeio">
+
+                        <div class="nomeMesMeio">
+                            <label>Selecione se você participou em alguma modalidade do ministério durante o mês</label>
+                            <select onclick="Validar()" th:field="${relatorio.participou}" name="selecionarMes">
+                                <option value=""></option>
+                                <option value="Sim">Sim</option>
+                                <option value="Não">Não</option>
+                            </select>
+                            <br>                       
+                        </div>
+
+                        <div class="nomeMesMeio">
+                            <label>Estudos Bíblicos</label><input th:field="${relatorio.estudo}" style="margin-bottom: 2%;" type="number"/>
+                            <br>                       
+                        </div>
+
+                        <div class="nomeMesMeio">
+                            <label>Horas (se for pioneiro auxiliar, regular, especial ou missionário em campo)</label><input th:field="${relatorio.horas}" type="number"/>
+                            <br>                       
+                        </div>
+
+                        <div class="nomeMesMeio" style="display: block; border-bottom: none;">
+                            <p>Observações:</p>
+                            <textarea th:field="${relatorio.obs}" rows="4" name="descricao" value="Observações: "></textarea>                       
+                        </div>
+
+                    </div>
+
+                    <button id="botaoCategoria" class="botaoCadastrar" type="submit">Enviar</button>
+
+                </div>
+            </form>
+
+            <div id="mensagemErro" style="margin-top: 5%; color: red; font-size: 150%; font-weight: 800; text-align: center;" th:if="${erro}" class="erro">Por favor preencha o relatório corretamente.</div>
+
+        </main>
+
+        <footer>
+
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+        <script>
+                                function Validar() {
+                                    var limpar = document.getElementById('mensagemErro');
+                                    var limpar2 = document.getElementById('mensagemErro2');
+                                    limpar.innerText = '';
+                                    limpar2.innerText = '';
+                                }
+        </script>
+
+    </body>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Quadro de Anúncios - Jardim Peruíbe</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="imagens/faviconJP.png">
+        <link rel="stylesheet" href="css/index.css" />        
+    </head>
+
+    <body style="margin-bottom: 15%; background-color: whitesmoke;">
+        <header>
+
+            <div class="opcoes0">
+                <div class="opcoes">
+                    <a th:href="@{/carrinho}" class="opcao-link">
+                        <p class="opcoesP">Carrinho</p>
+                    </a>
+
+                    <a th:href="@{pregacao}" class="opcao-link">
+                        <p class="opcoesP">Pregação</p>
+                    </a>
+
+                    <a th:href="@{dirigentes}" class="opcao-link">
+                        <p class="opcoesP">Dirigentes</p>
+                    </a>
+
+                    <a href="#" id="linkEntrar" class="opcao-link">
+                        <p class="opcoesP">JP</p>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="cabecalho">
+                <img th:src="@{imagens/JP0.png}" alt="alt"/>
+                <div id="cabecalhoCongregacao">
+                    <h1>Congregação: <br>"Jardim Peruíbe"</h1>
+                </div>
+            </div>
+
+            <div th:each="aviso : ${aviso}">
+                <div th:if="${aviso.tema != null}" class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div style="background-color: #FFB0B0; text-align: center; height: 50px;" class="card-header d-flex" id="headingOne">
+                            <h5 class="mb-0 w-100">
+                                <button class="btn btn-link w-100" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <p style="text-align: center; font-size: 125%; color: black; font-weight: 800; margin-top: -10px;" th:text="${aviso.tema}"></p>
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <p style="text-align: center; font-size: 110%; color: black;" class="avisoP2" th:text="${aviso.mensagem}">text</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="relat">
+                <a th:href="@{/enviarRelatorio}">
+                    <img th:src="@{imagens/folhaRelatorio.png}" alt="alt"/><span>Enviar Relatório</span>
+                </a>
+            </div>
+
+
+        </header>
+
+        <main>   
+
+            <div class="meses-container">
+                <div th:each="me : ${todasSemanas}" class="meses">   
+
+                    <a th:href="@{'semana?id=' + ${me.id}}" >
+                        <img th:src="@{'imagens/' + ${me.foto}}" th:alt="${me.dia}"/>
+                        <p th:text="${me.dia}"></p>
+                    </a>
+                </div>
+            </div>
+
+        </main>
+
+        <footer>
+
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+        <script>
+            // Adiciona um evento de clique ao link
+            document.getElementById("linkEntrar").addEventListener("click", function () {
+                var permissao = localStorage.getItem("permissao");
+                var form = document.createElement("form");
+                form.setAttribute("method", "POST");
+                form.setAttribute("action", "entrar");
+                var inputPermissao = document.createElement("input");
+                inputPermissao.setAttribute("type", "hidden");
+                inputPermissao.setAttribute("name", "permissao");
+                inputPermissao.setAttribute("value", permissao);
+                form.appendChild(inputPermissao);
+                document.body.appendChild(form);
+                form.submit();
+            });
+
+            window.onload = function () {
+                var validar = localStorage.getItem("validar");
+                if (!validar) {
+                    var validar = "validado";
+                    localStorage.setItem("validar", validar);
+                }
+            };
+        </script>
+
+    </body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Quadro de Anúncios - Jardim Peruíbe</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="imagens/faviconJP.png">
+        <link rel="stylesheet" href="css/index.css" /> 
+        <link rel="stylesheet" href="css/semana.css" /> 
+    </head>
+
+    <body style="margin-bottom: 15%; background-color: whitesmoke;">
+        <header>
+
+            <div class="cabecalho">
+                <a th:href="@{/inicio}">
+                    <img th:src="@{imagens/JP0.png}" alt="alt"/>
+                </a>
+                <div id="cabecalhoCongregacao">
+                    <h1>Congregação: <br>"Jardim Peruíbe"</h1>
+                </div>
+            </div>
+
+            <button id="botaoVoltar">
+                <a th:href="@{/inicio}">
+                    Voltar
+                </a>
+            </button>
+
+        </header>
+
+        <main>
+
+            <div th:object="${semana}">
+
+                <div th:if="${semana.fotomeiosemana != null}" class="img1">
+                    <a th:href="${semana.link1}">
+                        <img th:src="@{'imagens/' + ${semana.fotomeiosemana}}" th:alt="${semana.fotomeiosemana}">
+                    </a>
+                </div>   
+                <div th:if="${semana.fotofimsemana != null}" class="img3">
+                    <a th:href="${semana.link2}">
+                        <img th:src="@{'imagens/' + ${semana.fotofimsemana}}" th:alt="${semana.fotofimsemana}">                 
+                    </a>
+                </div>   
+
+
+                <p class="Final">Designações de Serviço <br><span th:text="${'Semana ' + semana.dia}"></span></p>
+
+                <div id="cartazTodo" class="flex-container">
+
+                    <div th:if="${#strings.isEmpty(semana.palco) == false}" class="cartazTema">
+                        <p>AUDITÓRIO</p>
+                        <img class="cartaz1" th:src="@{imagens\imgPalco.png}" alt="Indicador">
+                        <div class="cartazNome">
+                            <p th:text="${semana.palco}"></p>
+                        </div>
+                    </div>
+
+                    <div th:if="${#strings.isEmpty(semana.portao) == false}" class="cartazTema">
+                        <p>PORTÃO</p>
+                        <img class="cartaz1" th:src="@{imagens\imgPortao.png}" alt="Portão">
+                        <div class="cartazNome">
+                            <p th:text="${semana.portao}" class="cartazNome"></p>
+                        </div>
+                    </div>
+
+                    <div th:if="${#strings.isEmpty(semana.indicador) == false}" class="cartazTema">
+                        <p>INDICADOR</p>
+                        <img class="cartaz1" th:src="@{imagens\imgIndicador.png}" alt="Indicador">
+                        <div class="cartazNome">
+                            <p th:text="${semana.indicador}" class="cartazNome"></p>
+                        </div>
+                    </div>
+
+                    <div th:if="${#strings.isEmpty(semana.volante1) == false}" class="cartazTema">
+                        <p>VOLANTE</p>
+                        <img class="cartaz1" th:src="@{imagens\imgVolante.png}" alt="Microfone Volante">
+                        <div class="cartazNome">
+                            <p th:text="${semana.volante1}" class="cartazNome"><br><span th:text="${semana.volante2}"></span></p>
+                        </div>
+                    </div>
+
+                    <div th:if="${#strings.isEmpty(semana.audio) == false}" class="cartazTema">
+                        <p>ÁUDIO</p>
+                        <img class="cartaz1" th:src="@{imagens\imgAudio.png}" alt="Mesa de som">
+                        <div class="cartazNome">
+                            <p th:text="${semana.audio}" class="cartazNome"></p>
+                        </div>
+                    </div>
+
+                    <div th:if="${#strings.isEmpty(semana.midias) == false}" class="cartazTema">
+                        <p>VÍDEO</p>
+                        <img class="cartaz1" th:src="@{imagens\imgVideo.png}" alt="Mídias">
+                        <div class="cartazNome">
+                            <p th:text="${semana.midias}" class="cartazNome">Bruno</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div th:if="${#strings.isEmpty(semana.limpeza) == false}" id="cartazTodo" class="flex-container">
+                    <div class="cartazTemas">
+                        <p>LIMPEZA</p>
+                        <img class="cartaz1s" th:src="@{imagens\imgLimpeza1.png}" alt="Limpeza">
+                        <div class="cartazNomes">
+                            <p>Grupo: <br><span th:text="${semana.limpeza}"></span></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+
+        <footer>
+
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    </body>
+
+</html>

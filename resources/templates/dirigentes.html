@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Dirigentes para o Serviço de Campo</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="imagens/faviconJP.png">
+        <link rel="stylesheet" href="css/index.css" />   
+        <link rel="stylesheet" href="css/carrinho.css" />   
+    </head>
+
+    <body style="margin-bottom: 15%; background-color: whitesmoke;">
+        <header>
+
+            <div class="cabecalho">
+                <a th:href="@{/inicio}">
+                <img th:src="@{imagens/JP0.png}" alt="alt"/>
+                </a>
+                <div id="cabecalhoCongregacao">
+                    <h1>Congregação: <br>"Jardim Peruíbe"</h1>
+                </div>
+            </div>
+
+            <button id="botaoVoltar">
+                <a th:href="@{/inicio}">
+                    Voltar
+                </a>
+            </button>
+
+        </header>
+
+        <main>
+
+            <div class="carrinhoTodo">
+
+                <div th:each="dirigentes : ${dirigentes}">
+
+                    <img th:if="${dirigentes.foto1 != null}" class="carrinhoIMG" th:src="@{'imagens/' + ${dirigentes.foto1}}" alt="dirigentes.foto1"/>
+
+                    <img th:if="${dirigentes.foto2 != null}"  class="carrinhoIMG" th:src="@{'imagens/' + ${dirigentes.foto2}}" alt="dirigentes.foto2"/>
+
+                    <img th:if="${dirigentes.foto3 != null}"  class="carrinhoIMG" th:src="@{'imagens/' + ${dirigentes.foto3}}" alt="dirigentes.foto3"/>
+
+                    <img th:if="${dirigentes.foto4 != null}"  class="carrinhoIMG" th:src="@{'imagens/' + ${dirigentes.foto4}}" alt="dirigentes.foto4"/>
+
+                    <p th:if="${dirigentes.descricao != null}"  class="descricaoCarrinho" th:text="${dirigentes.descricao}"></p>
+
+                </div>
+
+            </div>
+
+        </main>
+
+        <footer>
+
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+
+    </body>
+
+</html>

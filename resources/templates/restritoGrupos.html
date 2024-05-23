@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Administração do quadro de anúncios</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="imagens/faviconJP.png">
+        <link rel="stylesheet" href="css/index.css" />   
+        <link rel="stylesheet" href="css/restrito.css" />   
+    </head>
+
+    <body style="margin-bottom: 15%; background-color: whitesmoke;">
+        <header>
+
+            <div class="cabecalho">
+                <a th:href="@{/inicio}">
+                    <img th:src="@{imagens/JP0.png}" alt="alt"/>
+                </a>
+                <div id="cabecalhoCongregacao">
+                    <h1>Congregação: <br>"Jardim Peruíbe"</h1>
+                </div>
+            </div>
+
+            <div>
+                <button style="margin-bottom: -3%;" id="botaoVoltar">
+                    <a th:href="@{/inicio}">
+                        Voltar
+                    </a>
+                </button>
+
+                <img onclick="cliqueSair()" id="botaoSair" src="imagens/sair.png" alt="Botão sair"/>
+
+            </div>
+
+
+        </header>
+
+        <main>           
+
+
+            <h1 class="categoria">Relatório de Serviço de Campo</h1>
+            <div class="cartazTodo">
+                <div style="cursor: pointer;" onclick="mostrarRelatoriosGrupo()" class="cartazTema">
+                    <img class="cartaz1" th:src="@{imagens\supgrupo.png}" alt="Relatório de serviço de campo">
+                    <div class="cartazNome">
+                        <p>Relatórios por Grupo</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </main>
+
+        <footer>
+            <div class="permissaoDiv" style="display: none">
+                <p th:text="${permissao}"></p>                           
+            </div>
+            <div class="grupoDiv" style="display: none">
+                <p th:text="${grupo}"></p>                           
+            </div>
+
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+        <script>
+                    function irPagina() {
+                        var token = localStorage.getItem('token');
+                        console.log(token);
+                        const endpoint = 'mostrarRelatorios';
+                        fetch(endpoint, {
+                            method: 'GET',
+                            headers: {
+                                'Authorization': 'Bearer ' + token
+                            }
+                        })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error(`Erro na requisição: ${response.status}`);
+                                    }
+                                })
+                                .catch(error => console.error('Erro:', error));
+                    }
+
+
+
+                    window.onload = function () {
+                        var permissao = localStorage.getItem("permissao");
+                        var grupo = localStorage.getItem("grupo");
+                        if (!permissao) {
+                            var permissaoElement = document.querySelector(".permissaoDiv p");
+                            permissao = permissaoElement.innerText;
+                            localStorage.setItem("permissao", permissao);
+                        }
+                        if (!grupo) {
+                            var grupoElement = document.querySelector(".grupoDiv p");
+                            grupo = grupoElement.innerText;
+                            localStorage.setItem("grupo", grupo);
+                        }
+                    };
+
+                    // Definindo um item no localStorage com expiração em 24 horas
+                    var permissaoExpiracao = 24 * 60 * 60 * 1000; // 24 horas em milissegundos
+                    setTimeout(function () {
+                        localStorage.removeItem("permissao");
+                        localStorage.removeItem("grupo");
+                    }, permissaoExpiracao);
+
+
+                    function cliqueSair() {
+                        localStorage.removeItem("permissao");
+                        localStorage.removeItem("grupo");
+                        window.location.href = "inicio";
+                    }
+
+
+                    function mostrarRelatoriosGrupo() {
+                        var grupo = localStorage.getItem("grupo");
+                        var permissao = localStorage.getItem("permissao");
+                        var form = document.createElement("form");
+                        form.setAttribute("method", "POST");
+                        form.setAttribute("action", "mostrarRelatoriosGrupo2");
+                        var inputGrupo = document.createElement("input");
+                        inputGrupo.setAttribute("type", "hidden");
+                        inputGrupo.setAttribute("name", "grupo");
+                        inputGrupo.setAttribute("value", grupo);
+                        form.appendChild(inputGrupo);
+                        
+                        var inputPermissao = document.createElement("input");
+                        inputPermissao.setAttribute("type", "hidden");
+                        inputPermissao.setAttribute("name", "permissao");
+                        inputPermissao.setAttribute("value", permissao);
+                        form.appendChild(inputPermissao);
+                        
+                        document.body.appendChild(form);
+                        form.submit();
+                    }
+
+        </script>
+
+
+    </body>
+
+</html>

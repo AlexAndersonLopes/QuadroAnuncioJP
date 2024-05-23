@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Mostrar Relatórios</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="imagens/faviconJP.png">
+        <link rel="stylesheet" href="css/index.css" />   
+        <link rel="stylesheet" href="css/mostrarRelatorio.css" />   
+    </head>
+
+    <body style="margin-bottom: 15%; background-color: whitesmoke;">
+        <header>
+
+            <div class="cabecalho">
+                <a th:href="@{/inicio}">
+                    <img th:src="@{imagens/JP0.png}" alt="alt"/>
+                </a>
+                <div id="cabecalhoCongregacao">
+                    <h1>Congregação: <br>"Jardim Peruíbe"</h1>
+                </div>
+            </div>
+
+            <button id="botaoVoltar">
+                <a th:href="@{/restrito}">
+                    Voltar
+                </a>
+            </button>
+
+        </header>
+
+        <main>
+
+            <form th:action="@{/mostrarRelatorios}" method="POST">
+                <input type="hidden" name="permissao" th:value="${permissao}">
+                <div class="linhaMes">
+                    <select name="mes">
+                        <option value="" th:selected="${mes == ''}">Todos meses</option>
+                        <option th:each="mesa : ${datas}" th:value="${mesa}" th:text="${mesa}" th:selected="${mesa == mes}"></option>         
+                    </select>
+                    <button type="submit">Procurar</button>
+                </div>
+            </form>
+
+
+            <div class="containers">
+                <h2>Relatórios Publicadores</h2>
+                <div style="background-color: white;" class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Mês</th>
+                                <th>Pregou?</th>
+                                <th>Modalidade</th>
+                                <th>Horas</th>
+                                <th>Estudos</th>
+                                <th>Observações</th>
+                                <th>Excluir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="relatorio : ${ListaRelatoriop}" th:data-id="${relatorio.id}">
+                                <td th:text="${relatorio.nome}" title="Nome"></td>
+                                <td th:text="${relatorio.mes}" title="Mês"></td>
+                                <td th:text="${relatorio.participou}" title="Pregou?"></td>
+                                <td th:text="${relatorio.pioneiro}" title="Modalidade"></td>
+                                <td th:text="${relatorio.horas}" title="Horas"></td>
+                                <td th:text="${relatorio.estudo}" title="Estudos"></td>
+                                <td th:text="${relatorio.obs}" title="Observações"></td>
+                                <td>
+                                    <button th:data-id="${relatorio.id}" class="btExcluirRel">Excluír</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <div class="containers">
+                <h2>Relatórios Pioneiros Auxiliares</h2>
+                <div style="background-color: white;" class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Mês</th>
+                                <th>Pregou?</th>
+                                <th>Modalidade</th>
+                                <th>Horas</th>
+                                <th>Estudos</th>
+                                <th>Observações</th>
+                                <th>Excluir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="relatorio : ${ListaRelatorioa}" th:data-id="${relatorio.id}">
+                                <td th:text="${relatorio.nome}" title="Nome"></td>
+                                <td th:text="${relatorio.mes}" title="Mês"></td>
+                                <td th:text="${relatorio.participou}" title="Pregou?"></td>
+                                <td th:text="${relatorio.pioneiro}" title="Modalidade"></td>
+                                <td th:text="${relatorio.horas}" title="Horas"></td>
+                                <td th:text="${relatorio.estudo}" title="Estudos"></td>
+                                <td th:text="${relatorio.obs}" title="Observações"></td>
+                                <td>
+                                    <button th:data-id="${relatorio.id}" class="btExcluirRel">Excluír</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <div class="containers">
+                <h2>Relatórios Pioneiros Regulares</h2>
+                <div style="background-color: white;" class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Mês</th>
+                                <th>Pregou?</th>
+                                <th>Modalidade</th>
+                                <th>Horas</th>
+                                <th>Estudos</th>
+                                <th>Observações</th>
+                                <th>Excluir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="relatorio : ${ListaRelatorior}" th:data-id="${relatorio.id}">
+                                <td th:text="${relatorio.nome}" title="Nome"></td>
+                                <td th:text="${relatorio.mes}" title="Mês"></td>
+                                <td th:text="${relatorio.participou}" title="Pregou?"></td>
+                                <td th:text="${relatorio.pioneiro}" title="Modalidade"></td>
+                                <td th:text="${relatorio.horas}" title="Horas"></td>
+                                <td th:text="${relatorio.estudo}" title="Estudos"></td>
+                                <td th:text="${relatorio.obs}" title="Observações"></td>
+                                <td>
+                                    <button th:data-id="${relatorio.id}" class="btExcluirRel">Excluír</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+
+        <footer>
+
+
+
+
+            <div class="containers">
+                <h2>Publicadores</h2>
+                <div style="background-color: antiquewhite;" class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Relatórios</th>
+                                <th>Estudos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="text-align: center;">
+                                <td th:text="${qtd}"></td>
+                                <td th:text="${est}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="containers">
+                <h2>Pioneiros Auxiliares</h2>
+                <div style="background-color: #FFFFB0;" class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Relatórios</th>
+                                <th>Horas</th>
+                                <th>Estudos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="text-align: center;">
+                                <td th:text="${aqtd}"></td>
+                                <td th:text="${ahor}"></td>
+                                <td th:text="${aest}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="containers">
+                <h2>Pioneiros Regulares</h2>
+                <div style="background-color: violet;" class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Relatórios</th>
+                                <th>Horas</th>
+                                <th>Estudos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="text-align: center;">
+                                <td th:text="${rqtd}"></td>
+                                <td th:text="${rhor}"></td>
+                                <td th:text="${rest}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+
+            <div>
+                <div style="display: flex;" class="linhaMes">
+                    <select name="mes" id="selectMes">
+                        <option value="">Mês</option>
+                        <option th:each="mesa : ${datas}" th:value="${mesa}" th:text="${mesa}"></option>                               
+                    </select>
+                    <button style="color: white; background-color: red;" id="excluirTodosRelatoriosBtn">Excluir todos Relatórios de</button>
+                </div>              
+
+            </div>
+
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('.btExcluirRel').click(function () {
+                    var relatorioId = $(this).data('id');
+                    $.ajax({
+                        url: 'excluirRelatorio?id=' + relatorioId,
+                        type: 'DELETE',
+                        success: function (result) {
+                            // Atualize sua interface conforme necessário
+                            console.log('Relatório excluído com sucesso');
+                            $('tr[data-id="' + relatorioId + '"]').remove();
+                            location.reload();
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Erro ao excluir relatório:', error);
+                        }
+                    });
+                });
+            });
+
+            document.getElementById('selectMes').addEventListener('change', function () {
+                var selectedMonth = this.value;
+                var btn = document.getElementById('excluirTodosRelatoriosBtn');
+                if (selectedMonth) {
+                    btn.innerText = 'Excluir todos Relatórios de ' + selectedMonth;
+                } else {
+                    btn.innerText = 'Excluir todos Relatórios de';
+                }
+            });
+
+            document.getElementById('excluirTodosRelatoriosBtn').addEventListener('click', function () {
+                var selectedMonth = document.getElementById('selectMes').value;
+                if (selectedMonth) {
+                    window.location.href = 'confirmarExcluirRelatorio?mes=' + selectedMonth;
+                } else {
+                    alert('Por favor, selecione um mês antes de prosseguir.');
+                }
+            });
+        </script>
+
+    </body>
+
+</html>

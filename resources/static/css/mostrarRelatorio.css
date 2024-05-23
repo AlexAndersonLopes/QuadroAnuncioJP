@@ -1,0 +1,124 @@
+
+.containers h2{
+    text-align: center;
+    margin-top: 5%;
+}
+
+.table-responsive th{
+    text-align: center;
+    width: 15%;
+    flex-wrap: wrap;
+}
+
+.table-responsive td{
+    width: 15%;
+    flex-wrap: wrap;
+}
+
+
+.linhaPesquisa {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+.form-inline {
+    display: flex;
+    align-items: center;
+}
+
+.form-control{
+    width: 70%;
+    margin-right: 3%;
+}
+
+
+
+
+
+.linhaMes{
+    margin-top: 5%;
+    width: 100%;
+}
+
+.linhaMes select{
+    font-size: 100%;
+    font-weight: 700;
+    width: 50%;
+    padding: 1% 5%;
+    margin-left: 10%;
+    border-radius: 25px;
+}
+
+.linhaMes button{
+    border-radius: 25px;
+    font-size: 100%;
+    font-weight: 700;
+    margin-left: 5%;
+    flex-grow: 1;
+    padding: 1% 5%;
+}
+
+.btExcluirRel{
+    width: 94%;
+    margin-left: 3%;
+    background-color: red;
+    color: white;
+    border-radius: 25px;
+    font-weight: 600;
+}
+
+@media only screen and (min-width: 649px) {
+
+    .containers h2{
+        text-align: center;
+        margin-top: 5%;
+    }
+
+    .containers{
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    .table-responsive th{
+        text-align: center;
+        width: 15%;
+        flex-wrap: wrap;
+        font-size: 140%;
+
+    }
+
+    .table-responsive td{
+        width: 15%;
+        flex-wrap: wrap;
+        font-size: 125%;
+        font-weight: 600;
+    }
+
+
+    .linhaMes{
+        display: flex;
+        margin-top: 5%;
+        width: 50%;
+        margin-left: 25%
+    }
+
+    .linhaMes select{
+        font-size: 120%;
+        font-weight: 700;
+        width: 60%;
+        padding: 1% 5%;
+        margin-left: 10%;
+        border-radius: 25px;
+    }
+
+    .linhaMes button{
+        font-size: 100%;
+        font-weight: 700;
+        margin-left: 5%;
+        padding: 1% 5%;
+        border-radius: 25px;
+    }
+
+
+}

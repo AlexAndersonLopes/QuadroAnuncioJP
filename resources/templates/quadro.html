@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Quadro de Anúncios - Jardim Peruíbe</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="imagens/faviconJP.png" >
+        <link rel="stylesheet" href="css/index.css" />  
+        <link rel="stylesheet" href="css/restrito.css" />
+    </head>
+
+    <body style="margin-bottom: 15%; background-color: whitesmoke;">
+        <header>
+
+            <div class="cabecalho">
+                <img src="imagens/JP0.png" alt="LogoTipo Jardim Peruíbe"/>
+                <div id="cabecalhoCongregacao">
+                    <h1>Congregação: <br>"Jardim Peruíbe"</h1>
+                </div>
+            </div>
+
+        </header>
+
+        <main>   
+
+            <form style="max-width: 500px; margin: auto; margin-top: 5%;" method="POST" th:action="@{/loginQuadro}" class="cadastrarCategoriaForm" id="formAutenticacao">
+
+                <label>Senha</label>
+                <input type="password" id="senha" name="senha"><br><br>
+
+                <button type="submit" id="botaoCategoria">Entrar</button>
+            </form>           
+
+            <div id="mensagemErro" style="margin-top: 5%; color: red; font-size: 150%; font-weight: 800; text-align: center;" th:if="${erro}" class="erro">Senha incorreta</div>
+
+
+        </main>
+
+        <footer>
+
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+        <script>
+            window.onload = function () {
+                var validar = localStorage.getItem("validar");
+                if (validar === "validado") {
+                    window.location.href = "inicio";
+                }
+            };
+        </script>
+
+    </body>
+
+</html>
